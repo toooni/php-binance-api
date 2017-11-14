@@ -134,7 +134,10 @@ class API {
 
         if ($method === 'POST') {
             curl_setopt($ch, CURLOPT_POST, true);
+        } elseif ($method === 'DELETE') {
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
         }
+
 
         curl_setopt($ch, CURLOPT_HEADER, FALSE);
         curl_setopt($ch, CURLOPT_URL, $endpoint);
@@ -163,10 +166,12 @@ class API {
 			"quantity" => $quantity,
 			"recvWindow" => 60000
 		];
+
 		if ( $type == "LIMIT" ) {
 			$opt["price"] = $price;
 			$opt["timeInForce"] = "GTC";
 		}
+
 		if ( isset($flags['stopPrice']) ) $opt['stopPrice'] = $flags['stopPrice'];
 		if ( isset($flags['icebergQty']) ) $opt['icebergQty'] = $flags['icebergQty'];
 		return $this->signedRequest("v3/order", $opt, "POST");
