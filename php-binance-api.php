@@ -75,6 +75,11 @@ class API {
 	public function aggTrades($symbol) {
 		return $this->tradesData($this->request("v1/aggTrades", ["symbol"=>$symbol]));
 	}
+	public function exchangeInfo()
+    {
+        return $this->request("v1/exchangeInfo");
+    }
+
 	public function depth($symbol) {
 		$json = $this->request("v1/depth",["symbol"=>$symbol]);
 		if ( !isset($this->info[$symbol]) ) $this->info[$symbol] = [];
