@@ -128,7 +128,7 @@ class API {
             "User-Agent: Mozilla/4.0 (compatible; PHP Binance API)\r\nX-MBX-APIKEY: {$this->api_key}\r\n"
         );
 
-		$params['timestamp'] = number_format(microtime(true)*1000,0,'.','');
+		$params['timestamp'] = number_format((microtime(true)-10)*1000,0,'.','');
 		if ( isset($params['wapi']) ) {
 			unset($params['wapi']);
 			$base = $this->wapi;
